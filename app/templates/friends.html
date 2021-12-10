@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+ {% block content %}
+  {% with messages = get_flashed_messages() %}
+   {% if messages %}
+    <ul>
+     {% for message in messages %}
+       <li>{{ message }} </li>
+     {% endfor %}
+    </ul>
+  {% endif %}
+{% endwith %}
+<h1 class="display-4 font-italic">Friends</h1>
+<br>
+<hr>
+<form action="" method="post" name="userSearch">
+    {{ form.hidden_tag() }}
+    <p>Add a friend: 
+        {{ form.username(autocomplete="off", placeholder=form.username.description) }}<br>
+     </p>
+     {% for error in form.username.errors %}
+         [{{ error }}]
+     {% endfor %}
+     <br>  
+    <p><input class="btn btn-light" type="submit" value="Add Friend"></p>
+    <br>
+    <br>
+</form>
+<h2 class="display-5 font-italic">Your Friends</h2>
+<br>
+  {%for friend in friends%}
+    <p><b>{{friend.fname}} {{friend.lname}}</b></p>
+    <a class="btn btn-light" href = "{{ url_for('friendDiary', id = friend.id)}}">View Diary</a>
+    <hr>
+  {%endfor%}
+{% endblock %}

@@ -1,0 +1,55 @@
+{% extends "base.html" %}
+ {% block content %}
+  {% with messages = get_flashed_messages() %}
+   {% if messages %}
+    <ul>
+     {% for message in messages %}
+       <li>{{ message }} </li>
+     {% endfor %}
+    </ul>
+  {% endif %}
+{% endwith %}
+<h1 class="display-4 font-italic">Entry</h1>
+<form action="" method="post" name="entry">
+    <br>
+    <hr>
+    {{ form.hidden_tag() }}
+    <p>Date: 
+        {{ form.date(autocomplete="off", placeholder=form.date.description) }}<br>
+     </p>
+     {% for error in form.date.errors %}
+         [{{ error }}]
+     {% endfor %}
+    <p>
+       {{ form.event(autocomplete="off", rows='10',cols='70', placeholder=form.event.description) }}<br>
+    </p>
+    {% for error in form.event.errors %}
+        [{{ error }}]
+    {% endfor %}
+    <p>
+       {{ form.feeling(autocomplete="off", rows='10',cols='70', placeholder=form.feeling.description) }}<br>
+    </p>
+    {% for error in form.feeling.errors %}
+        [{{ error }}]
+    {% endfor %}
+    <p>
+       {{ form.comments(autocomplete="off", rows='10',cols='70', placeholder=form.comments.description) }}<br>
+    </p>
+    {% for error in form.comments.errors %}
+        [{{ error }}]
+    {% endfor %}
+    <p>
+       {{ form.summ(autocomplete="off", placeholder=form.summ.description)}}<br>
+    </p>
+    {% for error in form.summ.errors %}
+        [{{ error }}]
+    {% endfor %}
+    <p>
+       Make entry private:  {{ form.private }}<br>
+    </p>
+    {% for error in form.private.errors %}
+        [{{ error }}]
+    {% endfor %}     
+    <p><input type="submit" class="btn btn-light" value="Add Entry"></p>
+</form>
+{% endblock %}

@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+ {% block content %}
+  {% with messages = get_flashed_messages() %}
+   {% if messages %}
+    <ul>
+     {% for message in messages %}
+       <li id="#flash">{{ message }} </li>
+     {% endfor %}
+    </ul>
+  {% endif %}
+{% endwith %}
+<h1 class="display-4 font-italic">Register</h1>
+<button class="btn btn-light"><a href="/">Login</a></button>
+<form action="" method="post" name="register">
+<br>
+<br>
+<hr>
+<br>
+    <p>First name:
+        {{ form.fname(autocomplete="off") }}<br>
+        </p>
+        {% for error in form.fname.errors %}
+            [{{ error }}]
+        {% endfor %} 
+        <p>Last name: {{ form.lname(autocomplete="off") }}</p>
+        {% for error in form.lname.errors %}
+            [{{ error }}]
+        {% endfor %} 
+    <p>Username: 
+       {{ form.username(autocomplete="off") }}<br>
+    </p>
+    {% for error in form.username.errors %}
+        [{{ error }}]
+    {% endfor %} 
+    <p>Password: {{ form.password(autocomplete="off") }}</p>
+    {% for error in form.password.errors %}
+        [{{ error }}]
+    {% endfor %} 
+    <p><input class="btn btn-light"  type="submit" value="sign-up"></p>
+</form>
+{% endblock %}

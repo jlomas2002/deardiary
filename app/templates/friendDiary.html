@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+ {% block content %}
+    <h1 class="display-3 font-italic">{{user.fname}} {{user.lname}}'s Diary</h1>
+    <br>
+    {%for entry in entries%}
+    {% if entry.private == False %}
+    <h4 class="ml-5 font-weight-bold">{{entry.date.day}}/{{entry.date.month}}/{{entry.date.year}}</h4>
+        <p class="ml-5 font-weight-bold">Events of the Day</p>
+        <p class="ml-5">{{entry.event}}</p>
+        <br>
+        <p class="ml-5 font-weight-bold">How I Felt</p>
+        <p class="ml-5">{{entry.feeling}}</p>
+        <br>
+        <p class="ml-5 font-weight-bold">Extra Comments</p>
+        <p class="ml-5">{{entry.comments}}</p>
+        <br>
+        <p class="ml-5 font-weight-bold">In One Word</p>
+        <p class="ml-5">{{entry.summ}}</p>
+        <hr>
+    {%endif%}
+    {%endfor%}
+ {% endblock %}
